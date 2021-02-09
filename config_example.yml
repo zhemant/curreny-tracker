@@ -1,7 +1,7 @@
 url: https://api.testexchange.com?base=EUR
 api-key: abcdef
 currency: INR
-up-symbol: src/up.png
-down-symbol: src/down.png
-alert-tone: src/mt.wav
+up-symbol: currency/media/up.png
+down-symbol: currency/media/down.png
+alert-tone: currency/media/mt.wav
 refresh_time_min: 1 
