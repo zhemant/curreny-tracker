@@ -7,6 +7,9 @@ venv/
 # config
 config.yml
 
+__pycache__/
+*.py[cod]
+
 # ignore
 tests/
 not_relevant/
