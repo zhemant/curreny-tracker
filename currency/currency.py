@@ -2,6 +2,7 @@ from notifypy import Notify, exceptions
 import requests
 import json
 import time
+import yaml
 
 
 class tracker:
@@ -31,12 +32,12 @@ class tracker:
         headers = {
             'api-key' : self.api_key
         }
-        data = requests.get(self.url, headers = headers)
-        parsed_data = json.loads(data.text)
+        #data = requests.get(self.url, headers = headers)
+        #parsed_data = json.loads(data.text)
 
-        #parsed_data = json.loads(self.test_data[self.counter])
+        parsed_data = json.loads(self.test_data[self.counter])
         self.counter += 1 
-        if self.counter > len(self.test_data) -1:
+        if self.counter > len(self.test_data) - 1:
             self.counter = 0
         curr_rate = float("{:.2f}".format(parsed_data["rates"][self.currency]))
 
@@ -62,5 +63,18 @@ class tracker:
         except (exceptions.InvalidAudioFormat, exceptions.InvalidIconPath, exceptions.InvalidAudioPath):
             pass
         
+def main():
+    # load yml file to dictionary
+    config = yaml.load(open('./config.yml'), Loader= yaml.BaseLoader)
+    track = tracker(config=config)
+    while True:
+        try:
+            track.refresh_value()
+            time.sleep(int(config['refresh_time_min']))
+        except KeyboardInterrupt:
+                break
 
+
+if __name__ == '__main__':
+    main()
 
