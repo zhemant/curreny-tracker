@@ -1,0 +1,12 @@
+# vscode
+.vscode/
+
+# venv
+venv/
+
+# config
+config.yml
+
+# ignore
+tests/
+not_relevant/
